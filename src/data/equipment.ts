@@ -32,7 +32,7 @@ export const equipment: Equipment[] = [
   {
     id: "phantom-4-rtk",
     name: "DJI Phantom 4 RTK",
-    category: "Bezpilotný letecký systém",
+    category: "Dron",
     purpose:
       "Letecké snímkovanie pozemkov a areálov s RTK korekciou polohy. Zo snímok vzniká ortofotomozaika a model terénu.",
     spec: { label: "Veľkosť pixela", value: "GSD < 2 cm" },
