@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { YouTubeIcon } from "@/components/ui/YouTubeIcon";
 import { MapPanel } from "@/components/MapPanel";
 import { contact, geoReadout, links } from "@/data/company";
 import styles from "./ContactSection.module.css";
@@ -109,15 +110,10 @@ export function ContactSection() {
                   href={contact.youtube.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.detailAction}
+                  className={styles.youtubeLink}
+                  aria-label={`YouTube ${contact.youtube.handle} (otvorí sa v novom okne)`}
                 >
-                  YouTube {contact.youtube.handle}
-                  <span className={styles.external} aria-hidden="true">
-                    ↗
-                  </span>
-                  <span className="u-visually-hidden">
-                    (otvorí sa v novom okne)
-                  </span>
+                  <YouTubeIcon size={30} />
                 </a>
               </p>
             </li>

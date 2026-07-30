@@ -113,6 +113,18 @@
   color: var(--cyan);
 }
 
+.youtubeLink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--cyan);
+  transition: color 0.24s var(--ease), opacity 0.24s var(--ease);
+}
+
+.youtubeLink:hover {
+  color: var(--cyan-600);
+  opacity: 0.9;
+}
+
 .external {
   font-size: 0.75em;
   color: var(--cyan);

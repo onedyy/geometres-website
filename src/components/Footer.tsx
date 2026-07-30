@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { Wordmark } from "@/components/ui/Wordmark";
+import { YouTubeIcon } from "@/components/ui/YouTubeIcon";
 import { ContourField } from "@/components/graphics/ContourField";
 import { navigation } from "@/data/navigation";
 import { company, contact, geoReadout, links } from "@/data/company";
@@ -63,13 +64,10 @@ export function Footer() {
                 href={contact.youtube.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.link}
+                className={styles.youtubeLink}
+                aria-label={`YouTube ${contact.youtube.handle} (otvorí sa v novom okne)`}
               >
-                YouTube {contact.youtube.handle}
-                <span aria-hidden="true"> ↗</span>
-                <span className="u-visually-hidden">
-                  (otvorí sa v novom okne)
-                </span>
+                <YouTubeIcon size={26} />
               </a>
             </li>
           </ul>
