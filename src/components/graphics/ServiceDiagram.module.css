@@ -1,0 +1,178 @@
+.svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.svg text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  fill: var(--paper-dim);
+}
+
+/* neighbouring / context geometry */
+.faint {
+  fill: none;
+  stroke: rgba(139, 163, 199, 0.28);
+  stroke-width: 1;
+}
+
+/* the subject of the drawing */
+.subject {
+  fill: rgba(0, 212, 255, 0.06);
+  stroke: none;
+}
+
+.boundary {
+  fill: none;
+  stroke: var(--paper-dim);
+  stroke-width: 1.5;
+}
+
+.newLine {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 1.4;
+  stroke-dasharray: 7 5;
+}
+
+/* survey / boundary points */
+.node {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 1.2;
+}
+
+.nodeCore {
+  fill: var(--cyan);
+  stroke: none;
+}
+
+/* dimension chains */
+.dim {
+  fill: none;
+  stroke: rgba(139, 163, 199, 0.55);
+  stroke-width: 1;
+}
+
+.dim text {
+  font-size: 12px;
+  fill: var(--slate);
+  stroke: none;
+}
+
+/* construction axes */
+.axis {
+  fill: none;
+  stroke: rgba(139, 163, 199, 0.22);
+  stroke-width: 1;
+  stroke-dasharray: 14 6 3 6;
+}
+
+.axisLabel circle {
+  fill: none;
+  stroke: rgba(139, 163, 199, 0.4);
+  stroke-width: 1;
+}
+
+.axisLabel text {
+  font-size: 11px;
+  fill: var(--slate);
+}
+
+/* levelling marks */
+.spot path {
+  fill: var(--cyan);
+  stroke: none;
+}
+
+.spot text {
+  font-size: 11px;
+  fill: var(--paper-dim);
+}
+
+/* photogrammetry */
+.frustum {
+  fill: none;
+  stroke: rgba(0, 212, 255, 0.4);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.flight {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.footprint path {
+  fill: rgba(0, 87, 255, 0.09);
+  stroke: rgba(139, 163, 199, 0.24);
+  stroke-width: 1;
+}
+
+.gcp path {
+  fill: none;
+  stroke: var(--paper-dim);
+  stroke-width: 1.2;
+}
+
+.gcp circle {
+  fill: none;
+  stroke: rgba(139, 163, 199, 0.4);
+  stroke-width: 1;
+}
+
+/* caption inside the drawing */
+.tag text {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  fill: var(--slate-dim);
+}
+
+.label text {
+  font-size: 13px;
+}
+
+.labelAccent {
+  fill: var(--cyan) !important;
+}
+
+.labelFaint {
+  fill: var(--slate-dim) !important;
+  font-size: 11px !important;
+}
+
+/* The drawing scales with its container, so on phones the type is enlarged
+   in user units to stay legible instead of shrinking with the artwork. */
+@media (max-width: 700px) {
+  .svg text {
+    font-size: 21px;
+  }
+
+  .dim text {
+    font-size: 19px;
+  }
+
+  .spot text {
+    font-size: 18px;
+  }
+
+  .axisLabel text {
+    font-size: 15px;
+  }
+
+  .label text {
+    font-size: 21px;
+  }
+
+  .labelFaint {
+    font-size: 17px !important;
+  }
+
+  .tag text {
+    font-size: 14px;
+  }
+}

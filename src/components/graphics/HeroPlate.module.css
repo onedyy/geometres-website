@@ -1,0 +1,302 @@
+.plate {
+  margin: 0;
+  width: 100%;
+}
+
+.frame {
+  position: relative;
+  padding: clamp(8px, 1.1vw, 14px);
+  border: 1px solid var(--line);
+  background: linear-gradient(
+    150deg,
+    rgba(22, 36, 63, 0.5) 0%,
+    rgba(6, 12, 24, 0.2) 55%
+  );
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--ink-750);
+  /* viewfinder mask: one clipped corner, echoed by the primary button */
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 34px),
+    calc(100% - 34px) 100%,
+    0 100%
+  );
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(5, 10, 20, 0.88) 0%,
+      rgba(5, 10, 20, 0.22) 42%,
+      rgba(5, 10, 20, 0.34) 100%
+    ),
+    linear-gradient(115deg, rgba(0, 87, 255, 0.14) 0%, transparent 60%);
+}
+
+/* ---------- plotted boundary ---------- */
+.plot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.plotLine {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  opacity: 0.85;
+  animation: plot 1.9s var(--ease-out) 0.75s both;
+}
+
+@keyframes plot {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------- survey points ---------- */
+.point {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transform: translate(-50%, -50%);
+  color: var(--cyan);
+  animation: resolve 0.55s var(--ease-out) both;
+  animation-delay: calc(1.05s + var(--d) * 0.22s);
+}
+
+.point svg {
+  width: clamp(18px, 2vw, 24px);
+  height: clamp(18px, 2vw, 24px);
+  filter: drop-shadow(0 0 6px rgba(5, 10, 20, 0.9));
+}
+
+.pointLabel {
+  padding: 2px 5px;
+  font-size: 0.5rem;
+  color: var(--paper);
+  background: rgba(5, 10, 20, 0.72);
+  border: 1px solid var(--line-cyan-soft);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+@keyframes resolve {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.78);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ---------- reticle ---------- */
+.reticle {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: clamp(84px, 15vw, 148px);
+  height: clamp(84px, 15vw, 148px);
+  transform: translate(-50%, -50%);
+  color: var(--cyan);
+  animation: lock 0.9s var(--ease-out) 0.35s both;
+}
+
+.reticle svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes lock {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.28);
+  }
+  to {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ---------- dimension chain ---------- */
+.dimension {
+  position: absolute;
+  left: 8%;
+  right: 26%;
+  bottom: 13%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: var(--paper-dim);
+  animation: fade 0.7s var(--ease-out) 1.85s both;
+}
+
+.dimensionRule {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: rgba(232, 240, 254, 0.5);
+}
+
+.dimensionCapStart,
+.dimensionCapEnd {
+  position: absolute;
+  top: -4px;
+  width: 1px;
+  height: 9px;
+  background: rgba(232, 240, 254, 0.7);
+}
+
+.dimensionCapStart {
+  left: 0;
+}
+
+.dimensionCapEnd {
+  right: 0;
+}
+
+.dimensionValue {
+  font-size: 0.5625rem;
+  color: var(--paper);
+  letter-spacing: 0.12em;
+  /* units stay lower-case — this is a measurement, not a label */
+  text-transform: none;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- motto, set vertically along the frame ---------- */
+.motto {
+  position: absolute;
+  left: 10px;
+  bottom: 16px;
+  font-size: 0.5rem;
+  color: rgba(179, 195, 221, 0.7);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 0.28em;
+  animation: fade 0.8s var(--ease) 2.1s both;
+}
+
+/* ---------- frame corners ---------- */
+.corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 0 solid var(--cyan);
+  opacity: 0.65;
+}
+
+.corner[data-c="tl"] {
+  top: -1px;
+  left: -1px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.corner[data-c="tr"] {
+  top: -1px;
+  right: -1px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+
+.corner[data-c="bl"] {
+  bottom: -1px;
+  left: -1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+
+.corner[data-c="br"] {
+  bottom: -1px;
+  right: -1px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+}
+
+/* ---------- metadata strip ---------- */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem clamp(0.75rem, 2vw, 1.75rem);
+  padding-top: 0.85rem;
+  color: var(--slate);
+}
+
+.meta > span[data-accent="true"] {
+  color: var(--cyan);
+  text-transform: none;
+}
+
+@media (min-width: 1100px) {
+  .media {
+    aspect-ratio: 4 / 4.7;
+  }
+
+  .dimension {
+    bottom: 9%;
+  }
+}
+
+@media (max-width: 520px) {
+  .media {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% calc(100% - 22px),
+      calc(100% - 22px) 100%,
+      0 100%
+    );
+  }
+
+  .motto {
+    display: none;
+  }
+
+  .dimension {
+    right: 18%;
+  }
+
+  .meta {
+    font-size: 0.5625rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plotLine,
+  .point,
+  .reticle,
+  .dimension,
+  .motto {
+    animation: none;
+    opacity: 1;
+  }
+
+  .plotLine {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}

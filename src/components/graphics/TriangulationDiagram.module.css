@@ -1,0 +1,56 @@
+.svg {
+  width: 100%;
+  height: auto;
+}
+
+.face {
+  fill: rgba(0, 212, 255, 0.07);
+  stroke: none;
+}
+
+.edges path {
+  fill: none;
+  stroke: rgba(139, 163, 199, 0.32);
+  stroke-width: 1;
+}
+
+.nodes circle {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 1.1;
+}
+
+.core {
+  fill: var(--cyan) !important;
+}
+
+.nodes text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  fill: var(--slate);
+}
+
+.baseline path {
+  fill: none;
+  stroke: rgba(139, 163, 199, 0.5);
+  stroke-width: 1;
+}
+
+.baseline text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  fill: var(--slate-dim);
+}
+
+/* enlarge in user units so the labels survive the scale-down on phones */
+@media (max-width: 700px) {
+  .nodes text {
+    font-size: 16px;
+  }
+
+  .baseline text {
+    font-size: 14px;
+  }
+}

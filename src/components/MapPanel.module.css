@@ -1,0 +1,171 @@
+.panel {
+  margin: 0;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--ink-750) 0%, var(--ink-900) 90%);
+  border: 1px solid var(--line);
+}
+
+/* The OSM tiles are light; this inversion keeps them inside the palette. */
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: invert(0.92) hue-rotate(178deg) saturate(0.72) brightness(0.94)
+    contrast(0.95);
+}
+
+/* ------------------------------------------------------- preview --- */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(139, 163, 199, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 163, 199, 0.07) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.roads {
+  position: absolute;
+  inset: 0;
+}
+
+.roads svg {
+  width: 100%;
+  height: 100%;
+}
+
+.roads path {
+  fill: none;
+  stroke: rgba(139, 163, 199, 0.2);
+  stroke-width: 6;
+  vector-effect: non-scaling-stroke;
+}
+
+.marker {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  color: var(--cyan);
+}
+
+.markerCore {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.markerRing {
+  position: absolute;
+  top: -18px;
+  left: -18px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(0, 212, 255, 0.45);
+  border-radius: 50%;
+}
+
+.markerRing[data-outer="true"] {
+  top: -34px;
+  left: -34px;
+  width: 68px;
+  height: 68px;
+  border-color: rgba(0, 212, 255, 0.18);
+}
+
+.markerCross {
+  position: absolute;
+  top: -44px;
+  left: -44px;
+  width: 88px;
+  height: 88px;
+  background:
+    linear-gradient(
+        to right,
+        transparent calc(50% - 0.5px),
+        rgba(0, 212, 255, 0.3) calc(50% - 0.5px),
+        rgba(0, 212, 255, 0.3) calc(50% + 0.5px),
+        transparent calc(50% + 0.5px)
+      )
+      no-repeat,
+    linear-gradient(
+        to bottom,
+        transparent calc(50% - 0.5px),
+        rgba(0, 212, 255, 0.3) calc(50% - 0.5px),
+        rgba(0, 212, 255, 0.3) calc(50% + 0.5px),
+        transparent calc(50% + 0.5px)
+      )
+      no-repeat;
+}
+
+.overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: clamp(0.85rem, 2vw, 1.25rem);
+  background: linear-gradient(to top, rgba(5, 10, 20, 0.9), transparent);
+}
+
+.overlayLabel {
+  color: var(--slate);
+  font-size: 0.5rem;
+}
+
+.loadButton {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--cyan);
+  border: 1px solid var(--line-cyan);
+  background: rgba(0, 212, 255, 0.08);
+  transition:
+    color 0.26s var(--ease),
+    background-color 0.26s var(--ease);
+}
+
+.loadButton:hover {
+  color: var(--ink-900);
+  background: var(--cyan);
+}
+
+/* ------------------------------------------------------- caption --- */
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding-top: 0.85rem;
+  color: var(--slate-dim);
+}
+
+.captionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--t-body-s);
+  font-weight: 500;
+  color: var(--cyan);
+  transition: color 0.24s var(--ease);
+}
+
+.captionLink:hover {
+  color: #4ce3ff;
+}

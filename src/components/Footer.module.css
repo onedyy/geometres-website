@@ -1,0 +1,149 @@
+.footer {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(3rem, 6vw, 5.5rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--ink-900);
+  border-top: 1px solid var(--line);
+}
+
+.terrain {
+  position: absolute;
+  inset: auto 0 -30% 0;
+  height: 70%;
+  opacity: 0.4;
+  pointer-events: none;
+  mask-image: linear-gradient(to top, #000 10%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to top, #000 10%, transparent 90%);
+}
+
+.inner {
+  position: relative;
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* ----------------------------------------------------------- brand --- */
+.brand {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.legalName {
+  margin-top: -0.35rem;
+  color: var(--slate);
+  font-size: var(--t-body-s);
+  letter-spacing: 0.04em;
+}
+
+.positioning {
+  max-width: 34ch;
+  color: var(--slate);
+  font-size: var(--t-body-s);
+  line-height: 1.65;
+}
+
+.motto {
+  color: var(--cyan);
+}
+
+/* --------------------------------------------------------- columns --- */
+.colTitle {
+  margin: 0 0 1.1rem;
+  color: var(--slate-dim);
+  font-weight: 500;
+}
+
+.nav ul,
+.col ul {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.link {
+  display: inline-block;
+  color: var(--paper-dim);
+  font-size: var(--t-body-s);
+  transition: color 0.24s var(--ease);
+}
+
+.link:hover {
+  color: var(--cyan);
+}
+
+.address {
+  display: grid;
+  gap: 0.6rem;
+  align-items: start;
+  justify-items: start;
+}
+
+.hours {
+  color: var(--slate);
+  font-size: var(--t-body-s);
+}
+
+/* -------------------------------------------------------- baseline --- */
+.baseline {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem clamp(1rem, 3vw, 2.5rem);
+  padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-top: 1px solid var(--line);
+  color: var(--slate-dim);
+}
+
+.copy {
+  margin-right: auto;
+}
+
+.coords {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--slate);
+}
+
+.point {
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--cyan);
+  transform: rotate(45deg);
+}
+
+.legal {
+  color: var(--slate-dim);
+}
+
+.legalNote {
+  margin-left: 0.5rem;
+  color: rgba(74, 92, 124, 0.7);
+  text-transform: none;
+  letter-spacing: 0.08em;
+}
+
+/* ------------------------------------------------------ breakpoints --- */
+@media (min-width: 640px) {
+  .inner {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 0.75fr));
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  .brand {
+    grid-column: auto;
+  }
+}

@@ -1,0 +1,207 @@
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+  background: var(--ink-800);
+  border-top: 1px solid var(--line-soft);
+}
+
+.track {
+  position: relative;
+  display: grid;
+  gap: 0;
+}
+
+/* ---------- the plotted survey line ---------- */
+.line {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: var(--line);
+}
+
+.lineFill {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--cyan) 0%,
+    rgba(0, 212, 255, 0.25) 100%
+  );
+  transition: height 1.5s var(--ease-out) 0.15s;
+}
+
+.track[data-reveal="in"] .lineFill {
+  height: 100%;
+}
+
+/* ---------- steps ---------- */
+.step {
+  position: relative;
+  padding: 0 0 clamp(2rem, 4vw, 2.75rem) clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.node {
+  --surface: var(--ink-800);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--cyan);
+  opacity: 0;
+  transform: scale(0.7);
+  transition:
+    opacity 0.4s var(--ease-out),
+    transform 0.5s var(--ease-out);
+  transition-delay: calc(260ms + var(--i) * 150ms);
+}
+
+.track[data-reveal="in"] .node {
+  opacity: 1;
+  transform: none;
+}
+
+.marker {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--slate);
+}
+
+.markerIndex {
+  color: var(--cyan);
+}
+
+.markerDot {
+  width: 3px;
+  height: 3px;
+  background: var(--slate-dim);
+}
+
+.title {
+  margin-top: 0.7rem;
+  font-size: var(--t-h3);
+  color: var(--paper);
+}
+
+.body {
+  margin-top: 0.7rem;
+  max-width: 44ch;
+  color: var(--slate);
+  font-size: var(--t-body-s);
+  line-height: 1.68;
+}
+
+/* ---------- tablet: two columns, line becomes a corner path ---------- */
+@media (min-width: 700px) and (max-width: 1179px) {
+  .track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .line {
+    display: none;
+  }
+
+  .step {
+    padding: clamp(1.4rem, 3vw, 1.9rem) 0 0;
+    border-top: 1px solid var(--line);
+    margin-bottom: clamp(2rem, 4vw, 2.75rem);
+  }
+
+  .step:last-child {
+    margin-bottom: 0;
+  }
+
+  .node {
+    position: static;
+    display: block;
+    margin-bottom: 1rem;
+  }
+}
+
+/* ---------- desktop: horizontal measured baseline ---------- */
+@media (min-width: 1180px) {
+  .track {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .line {
+    left: 0;
+    right: 0;
+    top: 10.5px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+
+  .lineFill {
+    inset: 0 auto 0 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      var(--cyan) 0%,
+      rgba(0, 212, 255, 0.25) 100%
+    );
+    transition: width 1.7s var(--ease-out) 0.15s;
+  }
+
+  .track[data-reveal="in"] .lineFill {
+    width: 100%;
+    height: 1px;
+  }
+
+  .step {
+    padding: 0;
+  }
+
+  /* the tick that drops from the baseline down to each step */
+  .step::before {
+    content: "";
+    position: absolute;
+    left: 10.5px;
+    top: 21px;
+    width: 1px;
+    height: calc(2.4rem + 1px);
+    background: var(--line);
+  }
+
+  .node {
+    position: static;
+    display: block;
+    margin-bottom: 2.4rem;
+  }
+
+  .marker {
+    margin-top: 0;
+  }
+
+  .body {
+    max-width: 34ch;
+  }
+}
+
+@media (min-width: 1600px) {
+  .track {
+    column-gap: 4.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lineFill,
+  .node {
+    transition: none;
+  }
+
+  .node {
+    opacity: 1;
+    transform: none;
+  }
+}
